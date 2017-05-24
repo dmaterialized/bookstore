@@ -9,3 +9,17 @@ requirements:
 - update/delete entries
 - show all
 - create new entries
+
+
+interface looks like this:
+
+(label) TITLE   (label) AUTHOR    (label) YEAR     (label) ISBN    LOOKUP
+list        |
+list        |
+list        |
+list        |
+list        |
+list        |
+list        |
+
+ADD       UPDATE      SHOW ALL
