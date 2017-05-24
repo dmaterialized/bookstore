@@ -1,3 +1,11 @@
 backend - sqlite3 database
 frontend - tkinter
 wrapper - app file
+
+requirements:
+
+- show list of records
+- search an entry
+- update/delete entries
+- show all
+- create new entries
