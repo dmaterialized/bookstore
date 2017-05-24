@@ -32,8 +32,19 @@ e3.grid(row=0,column=5)
 e4=Entry(window,textvariable=isbn_text)
 e4.grid(row=0,column=7)
 
+list1=Listbox(window,height=7,width=140)
+# list1.grid(row=1,column=0)
+# need to add a span across more than one column (not just one grid square)
+list1.grid(row=1,column=0,columnspan=4)
+# attach a scrollbar
+# tell the scrollbar about the list
 
-
+sb1=Scrollbar(window)
+sb1.grid(row=1,column=5)
+# attach the list to scrollbar, using configure and yscrollcommand.
+list1.configure(yscrollcommand=sb1.set)
+# let scrollbar know that the list is what is scrolling
+sb1.configure(command=list1.yview)
 
 # start everything
 window.mainloop()
