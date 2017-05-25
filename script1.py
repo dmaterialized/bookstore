@@ -81,7 +81,8 @@ b2.grid(row=4,column=6)
 b3=Button(window,text="Update Entry")
 b3.grid(row=4,column=4)
 
-
+b4=Button(window,text="Delete Entry")
+b4.grid(row=4,column=1)
 
 
 
