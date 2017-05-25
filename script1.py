@@ -72,8 +72,8 @@ sb1.configure(command=list1.yview)
 
 
 # b u t t o n   s e t u p
-b1=Button(window,text="Search")
-b1.grid(row=2,column=6)
+b1=Button(window,text="View All")
+b1.grid(row=2,column=4)
 
 b2=Button(window,text="Add Entry")
 b2.grid(row=4,column=6)
@@ -84,7 +84,11 @@ b3.grid(row=4,column=4)
 b4=Button(window,text="Delete Entry")
 b4.grid(row=4,column=1)
 
+b5=Button(window,text="Close Window")
+b5.grid(row=4,column=3)
 
+b6=Button(window,text="Search")
+b6.grid(row=2,column=7)
 
 
 
