@@ -1,3 +1,19 @@
+# /// ------------
+# \\\ BOOKSTORE
+# ///  creates a bookstore db with interface.
+# \\\   | version: 0.1
+# ///   | date: 2017.05.24
+# \\\   |
+# ///   | TODO:
+# \\\   | - all backend db
+# ///   | - scripting for each button
+# \\\   |
+# ///   |
+# \\\   |
+#      -------------------------------------
+
+
+
 from tkinter import *
 
 window=Tk()
