@@ -1,13 +1,13 @@
 # /// ------------
 # \\\ BOOKSTORE
 # ///  creates a bookstore db with interface.
-# \\\   | version: 0.1
+# \\\   | version: 0.1.2
 # ///   | date: 2017.05.24
 # \\\   |
 # ///   | TODO:
 # \\\   | - all backend db
 # ///   | - scripting for each button
-# \\\   |
+# \\\   | - finalize layout
 # ///   |
 # \\\   |
 #      -------------------------------------
@@ -72,19 +72,23 @@ sb1.configure(command=list1.yview)
 
 
 # b u t t o n   s e t u p
-b1=Button(window,text="View All")
+
+# move update over to middle, add to next one, close window to ending
+
+# update / add / close
+b1=Button(window,text="Show All")
 b1.grid(row=2,column=4)
 
-b2=Button(window,text="Add Entry")
-b2.grid(row=4,column=6)
+b2=Button(window,text="Close")
+b2.grid(row=4,column=7)
 
-b3=Button(window,text="Update Entry")
+b3=Button(window,text="Add Entry")
 b3.grid(row=4,column=4)
 
-b4=Button(window,text="Delete Entry")
+b4=Button(window,text="DELETE")
 b4.grid(row=4,column=1)
 
-b5=Button(window,text="Close Window")
+b5=Button(window,text="Update Entry")
 b5.grid(row=4,column=3)
 
 b6=Button(window,text="Search")
