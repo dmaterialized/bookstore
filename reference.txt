@@ -14,12 +14,12 @@ requirements:
 interface looks like this:
 
 (label) TITLE   (label) AUTHOR    (label) YEAR     (label) ISBN    LOOKUP
-list        |
-list        |
-list        |
-list        |
-list        |
-list        |
-list        |
+list        |s
+list        |s                      |             |
+list        |s                      | S E A R C H |
+list        |s                      |             |
+list        |s                      |_____________|
+list        |s
+list        |s
 
 ADD       UPDATE      SHOW ALL
