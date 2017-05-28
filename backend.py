@@ -25,7 +25,23 @@ def view():
     conn.close()
     return rows
 
+
+def search(title="",author="",year="",isbn=""):
+    conn=sqlite3.connect("books.db")
+    cur=conn.cursor()
+    cur.execute("SELECT * from booktable WHERE title=? OR author=? or year=? OR isbn=?",(title,author,year,isbn))
+    rows=cur.fetchall()
+    conn.commit()
+    conn.close()
+    return rows
+
+
+
+
+
 connect()
 
-insert("The Sea", "John Tablet", 1918, 91283423)
-print(view())
+insert("The Earth", "John Smith", 1918, 91283423)
+insert("The Waves", "John Tyler", 1933, 12387123)
+# print(view())
+print(search(title="The Waves"))
