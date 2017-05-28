@@ -8,9 +8,22 @@
 # \\\   | TODO:
 # ///   | - scripting for each button
 # \\\   | - finalize layout
-# ///   |
+# ///   | - ensure that search works on any capitalization
 # \\\   |
 #      -------------------------------------
+
+from tkinter import *
+import backend
+
+# ==========================================
+# ===== F U N C T I O N S ##################
+# ==========================================
+
+def get_selected_row(event):
+    index=list1.curselection()
+    return (index)
+    print(index)
+
 
 def view_command():
     list1.delete(0,END) #clear existing data here so that Show All won't duplicate its output.
@@ -29,10 +42,27 @@ def search_command(): #use the existing StringVar for search input
         # need to string it.
         list1.insert(END,row)
 
-from tkinter import *
-import backend
+def add_command():
+    backend.insert(title_text.get(),author_text.get(), year_text.get(),isbn_text.get())
+    # T0DO: currently has no feedback. FIXED
+    list1.delete(0,END)
+    list1.insert(END,(title_text.get(),author_text.get(), year_text.get(),isbn_text.get()))
+
+
+def delete_command():
+    # grab id of the selected row and send it to backend script
+    #tkinter bind command is used to connect a widget to a command
+    backend.delete(id)
+
+    #backend.delete(id)
+
+#def update_command():
+    # nothing here yet
+
+
 
 # backend.view()
+
 
 window=Tk()
 
@@ -78,9 +108,12 @@ list1=Listbox(window,height=40,width=60)
 list1.grid(row=2,column=0,columnspan=4)
 
 
+# create bind so that a list selection can be parsed.
+list1.bind('<<listboxSelect>>',get_selected_row)
+
+# s c r o l l b a r   s e t u p
 # attach a scrollbar
 # tell the scrollbar about the list
-# scrollbar setup
 sb1=Scrollbar(window)
 sb1.grid(row=2,column=4)
 # attach the list to scrollbar, using configure and yscrollcommand.
@@ -100,10 +133,10 @@ b1.grid(row=2,column=4)
 b2=Button(window,text="Close")
 b2.grid(row=4,column=7)
 
-b3=Button(window,text="Add Entry")
+b3=Button(window,text="Add Entry",command=add_command)
 b3.grid(row=4,column=4)
 
-b4=Button(window,text="DELETE")
+b4=Button(window,text="DELETE",command=delete_command)
 b4.grid(row=4,column=1)
 
 b5=Button(window,text="Update Entry")
