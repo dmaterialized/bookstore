@@ -1,21 +1,37 @@
 # /// ------------
 # \\\ BOOKSTORE
 # ///  creates a bookstore db with interface.
-# \\\   | version: 0.1.2
-# ///   | date: 2017.05.24
+# \\\   | version: 0.1.3
+# ///   | date: 2017.05.28 / initial: 2017.05.24
 # \\\   |
-# ///   | TODO:
-# \\\   | - all backend db
+# ///   |
+# \\\   | TODO:
 # ///   | - scripting for each button
 # \\\   | - finalize layout
 # ///   |
 # \\\   |
 #      -------------------------------------
 
+def view_command():
+    list1.delete(0,END) #clear existing data here so that Show All won't duplicate its output.
+    # iterate through a tuple
+    for row in backend.view():
+        list1.insert(END,row)
 
+
+def search_command(): #use the existing StringVar for search input
+    list1.delete(0,END)
+    for row in backend.search(title_text.get(),author_text.get(),year_text.get(),isbn_text.get()):
+        # the get is because
+        # in this situation
+        # each of the text fields
+        # is a variable and we
+        # need to string it.
 
 from tkinter import *
 import backend
+
+# backend.view()
 
 window=Tk()
 
@@ -77,7 +93,7 @@ sb1.configure(command=list1.yview)
 # move update over to middle, add to next one, close window to ending
 
 # update / add / close
-b1=Button(window,text="Show All")
+b1=Button(window,text="Show All",command=view_command)
 b1.grid(row=2,column=4)
 
 b2=Button(window,text="Close")
@@ -92,7 +108,7 @@ b4.grid(row=4,column=1)
 b5=Button(window,text="Update Entry")
 b5.grid(row=4,column=3)
 
-b6=Button(window,text="Search")
+b6=Button(window,text="Search",command=search_command)
 b6.grid(row=2,column=7)
 
 
