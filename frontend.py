@@ -21,12 +21,13 @@ def view_command():
 
 def search_command(): #use the existing StringVar for search input
     list1.delete(0,END)
-    for row in backend.search(title_text.get(),author_text.get(),year_text.get(),isbn_text.get()):
+    for row in backend.search(title_text.get(),author_text.get(), year_text.get(),isbn_text.get()):
         # the get is because
         # in this situation
         # each of the text fields
         # is a variable and we
         # need to string it.
+        list1.insert(END,row)
 
 from tkinter import *
 import backend
