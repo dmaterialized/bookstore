@@ -126,9 +126,7 @@ sb1.configure(command=list1.yview)
 
 # b u t t o n   s e t u p =========
 
-# move update over to middle, add to next one, close window to ending
-
-# update / add / close
+# show all / close / add / delete / update / search
 b1=Button(window,text="Show All",command=view_command)
 b1.grid(row=2,column=4)
 
