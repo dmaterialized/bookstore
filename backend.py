@@ -10,7 +10,6 @@ def connect():
 
 
 def insert(title, author, year, isbn):
-    # reuse all connection standards ==============
     conn=sqlite3.connect("books.db")
     cur=conn.cursor()
     cur.execute("INSERT INTO booktable VALUES (NULL,?,?,?,?)",(title,author,year,isbn))
@@ -19,7 +18,6 @@ def insert(title, author, year, isbn):
 
 def view():
     conn=sqlite3.connect("books.db")
-    # reuse all connection standards ==============
     cur=conn.cursor()
     cur.execute("SELECT * from booktable")
     rows=cur.fetchall()
@@ -30,7 +28,6 @@ def view():
 
 def search(title="",author="",year="",isbn=""):
     conn=sqlite3.connect("books.db")
-    # reuse all connection standards ==============
     cur=conn.cursor()
     cur.execute("SELECT * from booktable WHERE title=? OR author=? or year=? OR isbn=?",(title,author,year,isbn))
     rows=cur.fetchall()
@@ -41,29 +38,18 @@ def search(title="",author="",year="",isbn=""):
 
 def delete(id):
     conn=sqlite3.connect("books.db")
-    # reuse all connection standards ==============
     cur=conn.cursor()
     cur.execute("DELETE FROM booktable WHERE id=?",(id,))
-    # rows=cur.fetchall() 
-    #     isn't used here
+    # rows=cur.fetchall()
     conn.commit()
     conn.close()
-    
 
 def update(id, title, author, year, isbn):
     conn=sqlite3.connect("books.db")
-    # reuse all connection standards ==============
     cur=conn.cursor()
     cur.execute("UPDATE booktable SET title=?,author=?,year=?,isbn=? WHERE id=?",(title,author,year,isbn, id))
     conn.commit()
     conn.close()
-
-def intro(text):
-    # other params include expression, sides!
-    if text==1:
-        print("initializing...")
-
-intro(1)
 
 connect()
 
@@ -71,14 +57,14 @@ connect()
 # =======
 # =======
 # =======
-
-insert("The Earth", "John Smith", 1918, 91283423)
-insert("The Waves", "John Tyler", 1933, 12387123)
-
-print(view())
-# TESTS
-#print(search(author="John Tablet"))
-#update(1,"Every Little Thing","Mr So And So", 2017, 543431)
-#print(view())
-#print("And then...")
-print(view())
+# D E B U G  O P S
+# insert("The Earth", "John Smith", 1918, 91283423)
+# insert("The Waves", "John Tyler", 1933, 12387123)
+#
+# print(view())
+# print(search(author="John Tablet"))
+# update(1, "The Moon", "John Denver", 3022, 31923)
+# print(view())
+# update(1, "The Moon", "John Denver", 3022, 31923)
+# print("And then...")
+# print(view())
