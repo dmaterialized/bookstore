@@ -2,12 +2,12 @@
 # \\\ BOOKSTORE
 # ///  creates a bookstore db with interface.
 # \\\   | version: 0.1.3
-# ///   | date: 2017.05.28 / initial: 2017.05.24
+# ///   | date: 2017.06.04 / initial: 2017.05.24
 # \\\   |
 # ///   |
 # \\\   | TODO:
 # ///   | - scripting for each button
-# \\\   | - finalize layout
+# \\\   | - fix delete button error
 # ///   | - ensure that search works on any capitalization
 # \\\   |
 #      -------------------------------------
@@ -47,9 +47,9 @@ def search_command(): # use the existing StringVar for search input
 
 def add_command():
     backend.insert(title_text.get(),author_text.get(), year_text.get(),isbn_text.get())
-    # T0DO: currently has no feedback. FIXED
     list1.delete(0,END)
     list1.insert(END,(title_text.get(),author_text.get(), year_text.get(),isbn_text.get()))
+    print("Item added.")
 
 
 def delete_command():
