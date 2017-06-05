@@ -1,7 +1,7 @@
 # /// ------------
 # \\\ BOOKSTORE
 # ///  creates a bookstore db with interface.
-# \\\   | version: 0.1.3
+# \\\   | version: 0.1.4
 # ///   | date: 2017.06.04 / initial: 2017.05.24
 # \\\   |
 # ///   |
@@ -10,7 +10,9 @@
 # \\\   | - fix delete button error
 # ///   | - ensure that search works on any capitalization
 # \\\   |
-#      -------------------------------------
+# ///   |
+# \\\   |
+# /\/\     -------------------------------------
 
 from tkinter import *
 import backend
@@ -22,9 +24,27 @@ print("Frontend initialized.")
 # ============================================
 
 def get_selected_row(event):
-    index=list1.curselection()
-    return(index)
-    print(index)
+    # index=list1.curselection()
+    # print("the current selection is: ")
+    # print(index)
+
+    # needs to change to a selected Tuple, so needs to be converted
+    #       from a (14,) to a 14.
+
+#  doing over
+    # index=list1.curselection()[0] # indicates a tuple
+    # print(index)
+    # it worked!
+
+
+#   doing over again in order to print actual content of the row item
+    index=list1.curselection()[0]
+    selected_tuple=list1.get(index)
+    # this trick takes the full content of each indexed row
+    #       and stores in selected_tuple
+    print(selected_tuple)
+
+    # unused
     # index=list1.curselection()
     # selected_tuple=list1.get(index)
     # return (index)
@@ -61,7 +81,7 @@ def delete_command():
     # grab id of the selected row and send it to backend script
     #tkinter bind command is used to connect a widget to a command
     backend.delete(id)
-    print("item deleted"")
+    print("item deleted")
 
 #def update_command():
 
