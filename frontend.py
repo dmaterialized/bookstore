@@ -51,8 +51,15 @@ def get_selected_row(event):
     # return(selected_tuple)
     # no longer needed as tuple is now a global
 
-
-
+    # we want to fill entry fields with values of selected tuple
+    # let's create autofill
+    e1.delete(0,END)
+    e2.insert(END,selected_tuple[1])
+    e2.delete(0,END)
+    e3.insert(END,selected_tuple[2])
+    e3.delete(0,END)
+    e4.insert(END,selected_tuple[3])
+    e4.delete(0,END)
     # unused
     # index=list1.curselection()
     # selected_tuple=list1.get(index)
