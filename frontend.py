@@ -48,7 +48,10 @@ def get_selected_row(event):
     #
     # from debugging:
     # print(selected_tuple)
-    return(selected_tuple)
+    # return(selected_tuple)
+    # no longer needed as tuple is now a global
+
+
 
     # unused
     # index=list1.curselection()
@@ -89,7 +92,7 @@ def delete_command():
     # backend.delete(id) - works
     # backend.delete(get_selected_row()[0])
     # doesn't work until you call func with the arg 'event'
-
+    backend.delete(selected_tuple[0])
     print("item deleted")
 
 #def update_command():
