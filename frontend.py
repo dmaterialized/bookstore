@@ -38,11 +38,17 @@ def get_selected_row(event):
 
 
 #   doing over again in order to print actual content of the row item
+    # in order to span outside functions, this needs to be a GLOBAL
+    # FIRST GLOBAL !!
+    global selected_tuple
     index=list1.curselection()[0]
     selected_tuple=list1.get(index)
     # this trick takes the full content of each indexed row
     #       and stores in selected_tuple
-    print(selected_tuple)
+    #
+    # from debugging:
+    # print(selected_tuple)
+    return(selected_tuple)
 
     # unused
     # index=list1.curselection()
@@ -80,7 +86,10 @@ def add_command():
 def delete_command():
     # grab id of the selected row and send it to backend script
     #tkinter bind command is used to connect a widget to a command
-    backend.delete(id)
+    # backend.delete(id) - works
+    # backend.delete(get_selected_row()[0])
+    # doesn't work until you call func with the arg 'event'
+
     print("item deleted")
 
 #def update_command():
