@@ -51,21 +51,21 @@ def get_selected_row(event):
     # print(selected_tuple)
     # return(selected_tuple)
     #           no longer needed as tuple is now a global
-    # ==
-    # ==
-    # ==
-    # AUTOFILL FEATURE
-    # next we want to fill entry fields with values of selected tuple
-    # let's create autofill!
+#
+# AUTOFILL FEATURE
+# next we want to fill entry fields with values of selected tuple
+# let's create autofill!
+
     # in each field e1-e4, first clear out all Entry...
     e1.delete(0,END) # clear
-    e1.insert(END,selected_tuple[1]) # title
+    e1.insert(END,selected_tuple[1]) # show title
     e2.delete(0,END) # clear
-    e3.insert(END,selected_tuple[2]) # author
+    e2.insert(END,selected_tuple[2]) # show author
     e3.delete(0,END) # clear
-    e3.insert(END,selected_tuple[3]) # year
+    e3.insert(END,selected_tuple[3]) # show year
     e4.delete(0,END) # clear
-    e4.insert(END,selected_tuple[4]) # isbn
+    e4.insert(END,selected_tuple[4]) # show isbn
+
     print("currently selected:"+str(selected_tuple))
     # unused
     # index=list1.curselection()
@@ -92,7 +92,7 @@ def search_command(): # use the existing StringVar for search input
             # is a variable and we
             # need to string it.
         list1.insert(END,row)
-    print("ran a search.")
+    print("Ran a search.")
 
 def add_command():
     backend.insert(title_text.get(),author_text.get(), year_text.get(),isbn_text.get())
@@ -108,12 +108,17 @@ def delete_command():
     # backend.delete(get_selected_row()[0])
     # doesn't work until you call func with the arg 'event'
     backend.delete(selected_tuple[0])
-    print("item deleted")
+    print("Item deleted")
+    # then refresh the list
+    view_command()
 
 def update_command():
-    # unlike the delete command, this one requires full tuple with each
-                # value separated
+    # unlike the delete command, this one requires
+    #           full tuple with each
+    #           value separated
     backend.update(selected_tuple[0],selected_tuple[1],selected_tuple[2],selected_tuple[3],selected_tuple[4])
+    print("Updated.")
+
 
 # //////////////////////////////////////
 # ==== E N D   F U N C T I O N S ======
