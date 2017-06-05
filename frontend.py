@@ -103,7 +103,7 @@ def add_command():
 
 def delete_command():
     # grab id of the selected row and send it to backend script
-    #tkinter bind command is used to connect a widget to a command
+    # tkinter bind command is used to connect a widget to a command
     # backend.delete(id) - works
     # backend.delete(get_selected_row()[0])
     # doesn't work until you call func with the arg 'event'
@@ -116,8 +116,12 @@ def update_command():
     # unlike the delete command, this one requires
     #           full tuple with each
     #           value separated
-    backend.update(selected_tuple[0],selected_tuple[1],selected_tuple[2],selected_tuple[3],selected_tuple[4])
-    print("Updated.")
+    # backend.update(selected_tuple[0],selected_tuple[1],selected_tuple[2],selected_tuple[3],selected_tuple[4])
+    # this doesn't work, we need to use get functions.
+    backend.update(selected_tuple[0],title_text.get(),author_text.get(), year_text.get(),isbn_text.get())
+    # list1.delete(0,END)
+    # list1.insert(END,(title_text.get(),author_text.get(), year_text.get(),isbn_text.get())
+    # print("Updated.")
 
 
 # //////////////////////////////////////
