@@ -29,7 +29,7 @@ def get_selected_row(event):
     # print(index)
 
     # needs to change to a selected Tuple, so needs to be converted
-    #       from a (14,) to a 14.
+    #           from a (14,) to a 14.
 
 #  doing over
     # index=list1.curselection()[0] # indicates a tuple
@@ -43,23 +43,30 @@ def get_selected_row(event):
     global selected_tuple
     index=list1.curselection()[0]
     selected_tuple=list1.get(index)
+
     # this trick takes the full content of each indexed row
-    #       and stores in selected_tuple
+    #           and stores in selected_tuple
     #
     # from debugging:
     # print(selected_tuple)
     # return(selected_tuple)
-    # no longer needed as tuple is now a global
-
-    # we want to fill entry fields with values of selected tuple
-    # let's create autofill
-    e1.delete(0,END)
-    e2.insert(END,selected_tuple[1])
-    e2.delete(0,END)
-    e3.insert(END,selected_tuple[2])
-    e3.delete(0,END)
-    e4.insert(END,selected_tuple[3])
-    e4.delete(0,END)
+    #           no longer needed as tuple is now a global
+    # ==
+    # ==
+    # ==
+    # AUTOFILL FEATURE
+    # next we want to fill entry fields with values of selected tuple
+    # let's create autofill!
+    # in each field e1-e4, first clear out all Entry...
+    e1.delete(0,END) # clear
+    e1.insert(END,selected_tuple[1]) # title
+    e2.delete(0,END) # clear
+    e3.insert(END,selected_tuple[2]) # author
+    e3.delete(0,END) # clear
+    e3.insert(END,selected_tuple[3]) # year
+    e4.delete(0,END) # clear
+    e4.insert(END,selected_tuple[4]) # isbn
+    print("currently selected:"+str(selected_tuple))
     # unused
     # index=list1.curselection()
     # selected_tuple=list1.get(index)
@@ -67,8 +74,9 @@ def get_selected_row(event):
     # print(selected_tuple)
 
 def view_command():
-    list1.delete(0,END) #clear existing data here so that Show All
-                        # won't duplicate its output each time.
+    list1.delete(0,END)
+        #clear existing data here so that Show All
+            # won't duplicate its output each time.
     # iterate through a tuple
     for row in backend.view():
         list1.insert(END,row)
@@ -78,11 +86,11 @@ def view_command():
 def search_command(): # use the existing StringVar for search input
     list1.delete(0,END)
     for row in backend.search(title_text.get(),author_text.get(), year_text.get(),isbn_text.get()):
-        # the get is because
-        # in this situation
-        # each of the text fields
-        # is a variable and we
-        # need to string it.
+            # the get is because
+            # in this situation
+            # each of the text fields
+            # is a variable and we
+            # need to string it.
         list1.insert(END,row)
     print("ran a search.")
 
@@ -102,7 +110,10 @@ def delete_command():
     backend.delete(selected_tuple[0])
     print("item deleted")
 
-#def update_command():
+def update_command():
+    # unlike the delete command, this one requires full tuple with each
+                # value separated
+    backend.update(selected_tuple[0],selected_tuple[1],selected_tuple[2],selected_tuple[3],selected_tuple[4])
 
 # //////////////////////////////////////
 # ==== E N D   F U N C T I O N S ======
@@ -184,7 +195,7 @@ b3.grid(row=4,column=4)
 b4=Button(window,text="DELETE",command=delete_command)
 b4.grid(row=4,column=1)
 
-b5=Button(window,text="Update Entry")
+b5=Button(window,text="Update Entry",command=update_command)
 b5.grid(row=4,column=3)
 
 b6=Button(window,text="Search",command=search_command)
