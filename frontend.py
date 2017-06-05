@@ -14,6 +14,8 @@
 
 from tkinter import *
 import backend
+print("Frontend initialized.")
+
 
 # ============================================
 # ======= F U N C T I O N S ##################
@@ -29,10 +31,12 @@ def get_selected_row(event):
     # print(selected_tuple)
 
 def view_command():
-    list1.delete(0,END) #clear existing data here so that Show All won't duplicate its output.
+    list1.delete(0,END) #clear existing data here so that Show All
+                        # won't duplicate its output each time.
     # iterate through a tuple
     for row in backend.view():
         list1.insert(END,row)
+    print("Showing all records.")
 
 
 def search_command(): # use the existing StringVar for search input
@@ -44,6 +48,7 @@ def search_command(): # use the existing StringVar for search input
         # is a variable and we
         # need to string it.
         list1.insert(END,row)
+    print("ran a search.")
 
 def add_command():
     backend.insert(title_text.get(),author_text.get(), year_text.get(),isbn_text.get())
@@ -56,18 +61,20 @@ def delete_command():
     # grab id of the selected row and send it to backend script
     #tkinter bind command is used to connect a widget to a command
     backend.delete(id)
+    print("item deleted"")
 
 #def update_command():
-    # nothing here yet
 
 # //////////////////////////////////////
 # ==== E N D   F U N C T I O N S ======
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 
+
+
 window=Tk()
 
-# l a b e l   s e t u p
+# ====== l a b e l   s e t u p ===============
 l1=Label(window,text="Title")
 l1.grid(row=0,column=0)
 
@@ -86,7 +93,7 @@ author_text=StringVar()
 isbn_text=StringVar()
 year_text=StringVar()
 
-# == e n t r y   f i e l d   s e t u p =========
+# ====== e n t r y   f i e l d   s e t u p =====
 e1=Entry(window,textvariable=title_text)
 # textvariable means that the content of the Entry can be called later
 e1.grid(row=0,column=1)
@@ -101,17 +108,16 @@ e4=Entry(window,textvariable=isbn_text)
 e4.grid(row=0,column=7)
 
 
-
 # == l i s t b o x   s e t u p =========
 list1=Listbox(window,height=40,width=60)
 # list1.grid(row=1,column=0) doesn't do enough.
 # need to add a span across more than one column (not just one grid square)
 list1.grid(row=2,column=0,columnspan=4)
 
-
 # == B I N D I N G S =============
 # create bind so that a list selection can be parsed.
-list1.bind('<<listboxSelect>>',get_selected_row)
+list1.bind('<<ListboxSelect>>',get_selected_row)
+# ========================================
 
 # == s c r o l l b a r   s e t u p ==========
 # attach a scrollbar
