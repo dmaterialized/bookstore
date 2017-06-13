@@ -9,8 +9,8 @@
 # ///   | - scripting for each button
 # \\\   | - fix delete button error
 # ///   | - ensure that search works on any capitalization
-# \\\   |
-# ///   |
+# \\\   | √ ensure refresh happens after each action
+# ///   | - begin window with a view_command() so that the list appears.
 # \\\   |
 # /\/\     -------------------------------------
 
@@ -51,6 +51,7 @@ def get_selected_row(event):
     # print(selected_tuple)
     # return(selected_tuple)
     #           no longer needed as tuple is now a global
+
 #
 # AUTOFILL FEATURE
 # next we want to fill entry fields with values of selected tuple
@@ -99,7 +100,7 @@ def add_command():
     list1.delete(0,END)
     list1.insert(END,(title_text.get(),author_text.get(), year_text.get(),isbn_text.get()))
     print("Item added.")
-
+    view_command()
 
 def delete_command():
     # grab id of the selected row and send it to backend script
@@ -119,6 +120,7 @@ def update_command():
     # backend.update(selected_tuple[0],selected_tuple[1],selected_tuple[2],selected_tuple[3],selected_tuple[4])
     # this doesn't work, we need to use get functions.
     backend.update(selected_tuple[0],title_text.get(),author_text.get(), year_text.get(),isbn_text.get())
+    view_command()
     # list1.delete(0,END)
     # list1.insert(END,(title_text.get(),author_text.get(), year_text.get(),isbn_text.get())
     # print("Updated.")
@@ -127,6 +129,14 @@ def update_command():
 # //////////////////////////////////////
 # ==== E N D   F U N C T I O N S ======
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+
+
+
+
+
+
 
 
 
