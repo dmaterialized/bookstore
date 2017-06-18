@@ -1,8 +1,8 @@
 # /// ------------
 # \\\ BOOKSTORE
 # ///  creates a bookstore db with interface.
-# \\\   | version: 0.1.4
-# ///   | date: 2017.06.04 / initial: 2017.05.24
+# \\\   | version: 0.2
+# ///   | date: 2017.06.17 / initial: 2017.05.24
 # \\\   |
 # ///   |
 # \\\   | TODO:
@@ -11,8 +11,12 @@
 # ///   | - ensure that search works on any capitalization
 # \\\   | √ ensure refresh happens after each action
 # ///   | - begin window with a view_command() so that the list appears.
+# \\\   | - make adding duplicates impossible by running a search and erroring out
+# ///   | - test that scrollbar actually works
 # \\\   |
-# /\/\     -------------------------------------
+# ///   | -------------------------------------
+# \\\
+# ///
 
 from tkinter import *
 import backend
@@ -37,7 +41,8 @@ def get_selected_row(event):
     # it worked!
 
 
-#   doing over again in order to print actual content of the row item
+#   doing over again in order to print actual content of the row item.
+
     # in order to span outside functions, this needs to be a GLOBAL
     # FIRST GLOBAL !!
     global selected_tuple
@@ -50,7 +55,7 @@ def get_selected_row(event):
     # from debugging:
     # print(selected_tuple)
     # return(selected_tuple)
-    #           no longer needed as tuple is now a global
+    #     no longer needed as tuple is now a global
 
 #
 # AUTOFILL FEATURE
@@ -129,11 +134,6 @@ def update_command():
 # //////////////////////////////////////
 # ==== E N D   F U N C T I O N S ======
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-
-
-
-
 
 
 
@@ -221,10 +221,12 @@ b6=Button(window,text="Search",command=search_command)
 b6.grid(row=2,column=7)
 
 
-
-
-
+# =================================
 
 
 # start everything =======
+
 window.mainloop()
+
+
+# ===== fin ======
