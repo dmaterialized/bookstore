@@ -1,21 +1,19 @@
 # /// ------------
 # \\\ BOOKSTORE
 # ///  creates a bookstore db with interface.
-# \\\   | version: 0.2
+# \\\   | version: 0.2.1
 # ///   | date: 2017.06.17 / initial: 2017.05.24
 # \\\   |
 # ///   |
 # \\\   | TODO:
-# ///   | - scripting for each button
-# \\\   | - fix delete button error
 # ///   | - ensure that search works on any capitalization
 # \\\   | √ ensure refresh happens after each action
 # ///   | - begin window with a view_command() so that the list appears.
-# \\\   | - make adding duplicates impossible by running a search and erroring out
+# \\\   | - make adding duplicates impossible by running a search and erroring
 # ///   | - test that scrollbar actually works
-# \\\   |
-# ///   | -------------------------------------
-# \\\
+# \\\   | - make standalone and make db save itself
+# ///   | - make update print out name of updated item
+# \\\   | -------------------------------------
 # ///
 
 from tkinter import *
@@ -117,6 +115,7 @@ def delete_command():
     print("Item deleted")
     # then refresh the list
     view_command()
+    # problem solved
 
 def update_command():
     # unlike the delete command, this one requires
@@ -128,7 +127,9 @@ def update_command():
     view_command()
     # list1.delete(0,END)
     # list1.insert(END,(title_text.get(),author_text.get(), year_text.get(),isbn_text.get())
-    # print("Updated.")
+    print("Updated the item.")
+
+
 
 
 # //////////////////////////////////////
@@ -139,9 +140,8 @@ def update_command():
 
 
 
-
-
 window=Tk()
+window.wm_title("Bookstore")
 
 # ====== l a b e l   s e t u p ===============
 l1=Label(window,text="Title")
@@ -205,7 +205,7 @@ sb1.configure(command=list1.yview)
 b1=Button(window,text="Show All",command=view_command)
 b1.grid(row=2,column=4)
 
-b2=Button(window,text="Close")
+b2=Button(window,text="Close",command=window.destroy)
 b2.grid(row=4,column=7)
 
 b3=Button(window,text="Add Entry",command=add_command)
@@ -227,6 +227,3 @@ b6.grid(row=2,column=7)
 # start everything =======
 
 window.mainloop()
-
-
-# ===== fin ======
