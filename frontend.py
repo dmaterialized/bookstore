@@ -17,9 +17,12 @@
 # ///
 
 from tkinter import *
-import backend
+# import backend (no longer used)
+from backend import Database
+database=Database(self) #pass the word so that one useless param is available
+
 print("Frontend initialized.")
-backend.view()
+database.view()
 
 
 # ============================================
@@ -83,14 +86,14 @@ def view_command():
         #clear existing data here so that Show All
             # won't duplicate its output each time.
     # iterate through a tuple
-    for row in backend.view():
+    for row in database.view():
         list1.insert(END,row)
     print("Showing all records.")
 
 
 def search_command(): # use the existing StringVar for search input
     list1.delete(0,END)
-    for row in backend.search(title_text.get(),author_text.get(), year_text.get(),isbn_text.get()):
+    for row in database.search(title_text.get(),author_text.get(), year_text.get(),isbn_text.get()):
             # the get is because
             # in this situation
             # each of the text fields
@@ -100,19 +103,19 @@ def search_command(): # use the existing StringVar for search input
     print("Ran a search.")
 
 def add_command():
-    backend.insert(title_text.get(),author_text.get(), year_text.get(),isbn_text.get())
+    database.insert(title_text.get(),author_text.get(), year_text.get(),isbn_text.get())
     list1.delete(0,END)
     list1.insert(END,(title_text.get(),author_text.get(), year_text.get(),isbn_text.get()))
     print("Item added.")
     view_command()
 
 def delete_command():
-    # grab id of the selected row and send it to backend script
+    # grab id of the selected row and send it to database script
     # tkinter bind command is used to connect a widget to a command
-    # backend.delete(id) - works
-    # backend.delete(get_selected_row()[0])
+    # database.delete(id) - works
+    # database.delete(get_selected_row()[0])
     # doesn't work until you call func with the arg 'event'
-    backend.delete(selected_tuple[0])
+    database.delete(selected_tuple[0])
     print("Item deleted:"+str(selected_tuple))
     # then refresh the list
     view_command()
@@ -122,9 +125,9 @@ def update_command():
     # unlike the delete command, this one requires
     #           full tuple with each
     #           value separated
-    # backend.update(selected_tuple[0],selected_tuple[1],selected_tuple[2],selected_tuple[3],selected_tuple[4])
+    # database.update(selected_tuple[0],selected_tuple[1],selected_tuple[2],selected_tuple[3],selected_tuple[4])
     # this doesn't work, we need to use get functions.
-    backend.update(selected_tuple[0],title_text.get(),author_text.get(), year_text.get(),isbn_text.get())
+    database.update(selected_tuple[0],title_text.get(),author_text.get(), year_text.get(),isbn_text.get())
     view_command()
     # list1.delete(0,END)
     # list1.insert(END,(title_text.get(),author_text.get(), year_text.get(),isbn_text.get())
