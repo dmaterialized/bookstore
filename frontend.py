@@ -19,6 +19,7 @@
 from tkinter import *
 import backend
 print("Frontend initialized.")
+backend.view()
 
 
 # ============================================
@@ -112,7 +113,7 @@ def delete_command():
     # backend.delete(get_selected_row()[0])
     # doesn't work until you call func with the arg 'event'
     backend.delete(selected_tuple[0])
-    print("Item deleted")
+    print("Item deleted:"+str(selected_tuple))
     # then refresh the list
     view_command()
     # problem solved
