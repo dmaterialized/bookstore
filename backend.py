@@ -5,16 +5,17 @@ class Database:
     # create blueprint of the object
     # then create object instances
 
-
+    #TODO
     # broken at the moment
+    # update, delete, add, and search all stopped working, maybe they need (self)?
 
-    def __init__():# this syntax is a constructor
+    def __init__(self,db):# this syntax is a constructor
+    # __init__ is how python creates an initial call when class is instanced.
         conn=sqlite3.connect("books.db")
         cur=conn.cursor()
         cur.execute("CREATE TABLE IF NOT EXISTS booktable (id INTEGER PRIMARY KEY, title text, author text, year integer, isbn integer)")
         conn.commit()
         conn.close()
-
 
     def insert(title, author, year, isbn):
         conn=sqlite3.connect("books.db")
@@ -23,7 +24,7 @@ class Database:
         conn.commit()
         conn.close()
 
-    def view():
+    def view(self):
         conn=sqlite3.connect("books.db")
         cur=conn.cursor()
         cur.execute("SELECT * from booktable")
@@ -31,7 +32,6 @@ class Database:
         conn.commit()
         conn.close()
         return rows
-
 
     def search(title="",author="",year="",isbn=""):
         conn=sqlite3.connect("books.db")

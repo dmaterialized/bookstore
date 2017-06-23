@@ -19,7 +19,9 @@
 from tkinter import *
 # import backend (no longer used)
 from backend import Database
-database=Database(self) #pass the word so that one useless param is available
+
+#TODO
+database=Database("books.db") #you pass the word self so that one (useless) param is available
 
 print("Frontend initialized.")
 database.view()
@@ -59,7 +61,6 @@ def get_selected_row(event):
     # return(selected_tuple)
     #     no longer needed as tuple is now a global
 
-#
 # AUTOFILL FEATURE
 # next we want to fill entry fields with values of selected tuple
 # let's create autofill!
@@ -89,7 +90,6 @@ def view_command():
     for row in database.view():
         list1.insert(END,row)
     print("Showing all records.")
-
 
 def search_command(): # use the existing StringVar for search input
     list1.delete(0,END)
