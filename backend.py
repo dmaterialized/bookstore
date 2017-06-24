@@ -10,14 +10,15 @@ class Database:
     # update, delete, add, and search all stopped working, maybe they need (self)?
 
     def __init__(self,db):# this syntax is a constructor
+
     # __init__ is how python creates an initial call when class is instanced.
-        conn=sqlite3.connect("books.db")
+        conn=sqlite3.connect(db)
         cur=conn.cursor()
         cur.execute("CREATE TABLE IF NOT EXISTS booktable (id INTEGER PRIMARY KEY, title text, author text, year integer, isbn integer)")
         conn.commit()
         conn.close()
 
-    def insert(title, author, year, isbn):
+    def insert(self,title, author, year, isbn):
         conn=sqlite3.connect("books.db")
         cur=conn.cursor()
         cur.execute("INSERT INTO booktable VALUES (NULL,?,?,?,?)",(title,author,year,isbn))
@@ -25,6 +26,7 @@ class Database:
         conn.close()
 
     def view(self):
+        # TODO: doesn't work with (db)
         conn=sqlite3.connect("books.db")
         cur=conn.cursor()
         cur.execute("SELECT * from booktable")
@@ -33,7 +35,7 @@ class Database:
         conn.close()
         return rows
 
-    def search(title="",author="",year="",isbn=""):
+    def search(self,title="",author="",year="",isbn=""):
         conn=sqlite3.connect("books.db")
         cur=conn.cursor()
         cur.execute("SELECT * from booktable WHERE title=? OR author=? or year=? OR isbn=?",(title,author,year,isbn))
@@ -42,7 +44,7 @@ class Database:
         conn.close()
         return rows
 
-    def delete(id):
+    def delete(self,id):
         conn=sqlite3.connect("books.db")
         cur=conn.cursor()
         cur.execute("DELETE FROM booktable WHERE id=?",(id,))
@@ -50,7 +52,7 @@ class Database:
         conn.commit()
         conn.close()
 
-    def update(id, title, author, year, isbn):
+    def update(self,id, title, author, year, isbn):
         conn=sqlite3.connect("books.db")
         cur=conn.cursor()
         cur.execute("UPDATE booktable SET title=?,author=?,year=?,isbn=? WHERE id=?",(title,author,year,isbn, id))
