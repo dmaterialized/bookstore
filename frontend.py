@@ -1,8 +1,8 @@
 # /// ------------
 # \\\ BOOKSTORE
 # ///  creates a bookstore db with interface.
-# \\\   | version: 0.2.1
-# ///   | date: 2017.06.17 / initial: 2017.05.24
+# \\\   | version: 0.2.3
+# ///   | date: 2017.06.26 / initial: 2017.05.24
 # \\\   |
 # ///   |
 # \\\   | TODO:
@@ -21,7 +21,7 @@ from tkinter import *
 from backend import Database
 
 #TODO
-database=Database("books.db") #you pass the word self so that one (useless) param is available
+database=Database("books.db")
 
 print("Frontend initialized.")
 database.view()
@@ -135,11 +135,9 @@ def update_command():
 
 
 
-
 # //////////////////////////////////////
 # ==== E N D   F U N C T I O N S ======
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
 
 
 
@@ -166,6 +164,8 @@ author_text=StringVar()
 isbn_text=StringVar()
 year_text=StringVar()
 
+
+
 # ====== e n t r y   f i e l d   s e t u p =====
 e1=Entry(window,textvariable=title_text)
 # textvariable means that the content of the Entry can be called later
@@ -187,10 +187,13 @@ list1=Listbox(window,height=40,width=60)
 # need to add a span across more than one column (not just one grid square)
 list1.grid(row=2,column=0,columnspan=4)
 
+
 # == B I N D I N G S =============
 # create bind so that a list selection can be parsed.
 list1.bind('<<ListboxSelect>>',get_selected_row)
+# TODO: HOW: still don't really get this.
 # ========================================
+
 
 # == s c r o l l b a r   s e t u p ==========
 # attach a scrollbar

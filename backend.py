@@ -5,10 +5,6 @@ class Database:
     # create blueprint of the object
     # then create object instances
 
-    #TODO
-    # broken at the moment
-    # update, delete, add, and search all stopped working, maybe they need (self)?
-
     def __init__(self,db):# this syntax is a constructor
 
     # __init__ is how python creates an initial call when class is instanced.
@@ -42,8 +38,11 @@ class Database:
         self.cur.execute("UPDATE booktable SET title=?,author=?,year=?,isbn=? WHERE id=?",(title,author,year,isbn, id))
         self.conn.commit()
 
+        # need a close method now.
+    def __del__(self):
+        self.conn.close()
 
-print("Backend initialized.")
+print("Backend initialized.") # check in when loaded
 
 # =======
 # =======
