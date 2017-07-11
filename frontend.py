@@ -13,14 +13,14 @@
 # ///   | - test that scrollbar actually works
 # \\\   | - make standalone and make db save itself
 # ///   | - make update print out name of updated item
+# \\\   | - make the frontend OOP
+# ///   |
 # \\\   | -------------------------------------
 # ///
 
 from tkinter import *
-# import backend (no longer used)
+# import (no longer used)
 from backend import Database
-
-#TODO
 database=Database("books.db")
 
 print("Frontend initialized.")
@@ -36,8 +36,9 @@ def get_selected_row(event):
     # print("the current selection is: ")
     # print(index)
 
-    # needs to change to a selected Tuple, so needs to be converted
-    #           from a (14,) to a 14.
+                                        # needs to change to a selected Tuple,
+                                        # so needs to be converted from
+                                        # a (14,) to a 14.
 
 #  doing over
     # index=list1.curselection()[0] # indicates a tuple
@@ -84,8 +85,8 @@ def get_selected_row(event):
 
 def view_command():
     list1.delete(0,END)
-        #clear existing data here so that Show All
-            # won't duplicate its output each time.
+    #clear existing data here so that Show All
+    # won't duplicate its output each time.
     # iterate through a tuple
     for row in database.view():
         list1.insert(END,row)
@@ -94,11 +95,11 @@ def view_command():
 def search_command(): # use the existing StringVar for search input
     list1.delete(0,END)
     for row in database.search(title_text.get(),author_text.get(), year_text.get(),isbn_text.get()):
-            # the get is because
-            # in this situation
-            # each of the text fields
-            # is a variable and we
-            # need to string it.
+                                            # the get is because
+                                            # in this situation
+                                            # each of the text fields
+                                            # is a variable and we
+                                            # need to string it.
         list1.insert(END,row)
     print("Ran a search.")
 
@@ -110,8 +111,11 @@ def add_command():
     view_command()
 
 def delete_command():
-    # grab id of the selected row and send it to database script
-    # tkinter bind command is used to connect a widget to a command
+                                            # grab id of the selected row
+                                            # and send it to database script
+                                            # tkinter bind command is used
+                                            # to connect a widget to a command
+
     # database.delete(id) - works
     # database.delete(get_selected_row()[0])
     # doesn't work until you call func with the arg 'event'
@@ -122,9 +126,9 @@ def delete_command():
     # problem solved
 
 def update_command():
-    # unlike the delete command, this one requires
-    #           full tuple with each
-    #           value separated
+                                            # unlike the delete command, this
+                                            # one requires full tuple with each
+                                            # value separated
     # database.update(selected_tuple[0],selected_tuple[1],selected_tuple[2],selected_tuple[3],selected_tuple[4])
     # this doesn't work, we need to use get functions.
     database.update(selected_tuple[0],title_text.get(),author_text.get(), year_text.get(),isbn_text.get())
@@ -136,10 +140,8 @@ def update_command():
 
 
 # //////////////////////////////////////
-# ==== E N D   F U N C T I O N S ======
+# ==== E N D   F U N C T I O N S ==========================================
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-
 
 
 window=Tk()
